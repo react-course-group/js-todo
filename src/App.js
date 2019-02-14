@@ -14,6 +14,8 @@ var App = () => {
   `
 }
 
+var l = 5
+
 App.addEventListeners = () => {
   var Page = contents[window.location.hash.substring(1) || 'home']
   if (Navbar.addEventListeners) Navbar.addEventListeners()
