@@ -1,3 +1,5 @@
+import DeleteTask from './Delete-Task'
+
 var tasks = [
 'Yo'
 ]
@@ -8,12 +10,12 @@ var None = () => `
   </div>
 `
 
-var Task = content => {
-  return `<p class="text-grey-darkest border-b border-grey-light p-3">${content}</p>`
+var Task = (content, index) => {
+  return `<p class="text-grey-darkest border-b border-grey-light p-3">${content} ${DeleteTask(index)}</p>`
 }
 
 var Home = () => `
-  <input id="task-input" class="block w-full my-5 p-3 border-b-2 border-b-grey focus:border-blue" placeholder="What to do?" type="text" />   
+  <input id="task-input" class="block w-full my-5 p-3 border-b-2 border-b-grey focus:border-blue" placeholder="What to do?"  autofocus="autofocus type="text" />   
   ${tasks.map(Task).join('') || None()}
 `
 
@@ -25,6 +27,7 @@ Home.addEventListeners = () => {
       window.renderApp()
     }
   })
+  if (DeleteTask.addEventListeners) DeleteTask.addEventListeners(tasks)
 }
 
 export default Home
