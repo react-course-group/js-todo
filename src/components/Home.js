@@ -8,8 +8,13 @@ var None = () => `
   </div>
 `
 
-var Task = content => {
-  return `<p class="text-grey-darkest border-b border-grey-light p-3">${content}</p>`
+var Task = (content, index) => {
+  return `
+  <div class="text-grey-darkest border-b border-grey-light p-3">
+    <p style="display:inline">${content}</p>
+    <i id="taskId-${index}" class="delete-task far fa-trash-alt"></i> 
+  </div>
+  `
 }
 
 var Home = () => `
@@ -25,6 +30,14 @@ Home.addEventListeners = () => {
       window.renderApp()
     }
   })
+
+  var deleteButton = document.querySelectorAll('.delete-task')
+  deleteButton.forEach(element => {
+    element.addEventListener('click', event => {
+      tasks.splice(event.toElement.id.substring(7), 1);
+      window.renderApp()
+    })
+  });
 }
 
 export default Home
